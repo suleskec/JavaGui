@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import java.awt.Color;
 
 /**
  * Minimal Java Swing application.
@@ -15,6 +16,7 @@ public class GUIDemo extends JFrame
     private JPanel panel;
     private JButton biggerButton;
     private JButton smallerButton;
+    private JButton mediumButton;
 
     /**
      * Set up the application.
@@ -28,10 +30,13 @@ public class GUIDemo extends JFrame
         panel = new JPanel();
         biggerButton = new JButton("BIGGER");
         smallerButton = new JButton("SMALLER");
+        mediumButton = new JButton("MEDIUM");
         biggerButton.addActionListener(new ButtonHandler());
+        mediumButton.addActionListener(new ButtonHandler());
         smallerButton.addActionListener(new ButtonHandler());
         add(panel);
         panel.add(biggerButton);
+        panel.add(mediumButton);
         panel.add(smallerButton);
         setVisible(true);
     }
@@ -53,10 +58,15 @@ public class GUIDemo extends JFrame
             if (e.getSource().equals(biggerButton))
             {
                 setSize(size.width + 10, size.height + 10);
-            }
-            else
+                panel.setBackground(Color.GRAY);
+            } else if (e.getSource().equals(mediumButton))
+            {
+                setSize(size.width + 5, size.height + 5);
+                panel.setBackground(Color.GREEN);
+            } else
             {
                 setSize(size.width - 10, size.height - 10);
+                panel.setBackground(Color.GRAY);
             }
 
         }
